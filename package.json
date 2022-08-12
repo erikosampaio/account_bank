@@ -1,5 +1,14 @@
 {
   "name": "account_bank",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "bootstrap": "3.3.7",
+    "font-awesome": "4.6.3",
+    "jquery": "3.3.1"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:erikosampaio/account_bank.git",
+  "author": "erikosampaio <erikoa.93@gmail.com>",
+  "license": "MIT"
 }
