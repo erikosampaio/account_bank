@@ -39,7 +39,11 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Responsável pelas autenticações do usuário
 gem 'devise'
 
+# Melhor Visualização das tasks
 gem 'tty-spinner'
+
+# Visualizar banco de dados no navegador
+gem 'rails_db'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
