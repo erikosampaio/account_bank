@@ -12,5 +12,3 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 
-# /app/assets
-Rails.application.config.assets.precompile += %w( user_devise.js user_devise.css )
