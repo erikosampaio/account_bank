@@ -33,7 +33,7 @@
               <% unless user_signed_in? %>
                 <li><%= link_to 'Depositar', users_backoffice_depositar_path %></li>
                 <li><%= link_to 'Logar', new_user_session_path %></li>
-                <li><%= link_to 'Criar Conta', new_user_registration_path %></li>
+                <li><%= link_to 'Registrar-se', new_user_registration_path %></li>
               <% else %>
                 <li><%= link_to 'Sacar', users_backoffice_sacar_path %></li>
                 <li><%= link_to 'Transferência', users_backoffice_transferencia_path %></li>

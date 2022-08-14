@@ -1,21 +1,21 @@
 class UsersBackoffice::ProfileController < ApplicationController
-  before_action :authenticate_user!, except: [:depositar]
-  before_action :set_params, only: [:sacar, :closing_account, :transferencia, :extrato]
+  before_action :authenticate_user!, except: [:deposit]
+  before_action :set_params, only: [:withdraw, :closing_account, :transfer, :extract]
   layout 'users_backoffice'
 
-  def sacar
+  def withdraw
   end
 
-  def depositar
+  def deposit
   end
 
-  def transferencia
+  def transfer
   end
 
-  def extrato
+  def extract
   end
 
-  def saldo
+  def balance
   end
 
   def update
@@ -32,7 +32,7 @@ class UsersBackoffice::ProfileController < ApplicationController
 
   private
     def params_user
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:email, :password, :password_confirmation)
     end
 
     def set_params

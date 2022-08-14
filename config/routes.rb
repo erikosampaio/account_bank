@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   namespace :users_backoffice do
-    get 'sacar', to: 'profile#sacar'
-    get 'depositar', to: 'profile#depositar'
-    get 'transferencia', to: 'profile#transferencia'
-    get 'extrato', to: 'profile#extrato'
-    get 'saldo', to: 'profile#saldo'
+    get 'sacar', to: 'profile#withdraw'
+    get 'depositar', to: 'profile#deposit'
+    get 'transferencia', to: 'profile#transfer'
+    get 'extrato', to: 'profile#extract'
+    get 'saldo', to: 'profile#balance'
     get 'encerrar_conta', to: 'profile#closing_account'
   end
 
