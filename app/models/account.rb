@@ -1,4 +1,4 @@
 class Account < ApplicationRecord
   belongs_to :user
-  has_one :account
+  has_many :transations
 end

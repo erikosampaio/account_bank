@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get 'extrato', to: 'profile#extract'
     get 'saldo', to: 'profile#balance'
     get 'encerrar_conta', to: 'profile#closing_account'
+    get 'editar', to: 'profile#update'
   end
 
   devise_for :users

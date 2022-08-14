@@ -45,6 +45,9 @@ gem 'tty-spinner'
 # Visualizar banco de dados no navegador
 gem 'rails_db'
 
+# Visualizar melhor rails console
+gem 'awesome_print', '~> 1.8'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
