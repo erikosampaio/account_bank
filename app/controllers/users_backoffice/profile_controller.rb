@@ -1,14 +1,10 @@
 class UsersBackoffice::ProfileController < ApplicationController
   before_action :authenticate_user!, except: [:deposit]
+  before_action :set_user, only: [:index, :withdraw, :transfer, :balance, :extract, :edit, :update, :closing_account]
   before_action :password_verify, only: [:update]
-  before_action :set_params, only: [:withdraw, :closing_account, :transfer, :extract, :edit, :update]
   layout 'users_backoffice'
 
   def index
-  end
-
-  def edit
-    @user.build_account if @user.account.blank?
   end
 
   def withdraw
@@ -20,13 +16,14 @@ class UsersBackoffice::ProfileController < ApplicationController
   def transfer
   end
 
-  def extract
-  end
-
   def balance
   end
 
-  def closing_account
+  def extract
+  end
+
+  def edit
+    @user.build_account if @user.account.blank?
   end
 
   def update
@@ -38,14 +35,18 @@ class UsersBackoffice::ProfileController < ApplicationController
     end
   end
 
+  def closing_account
+  end
+
   private
+
+    def set_user
+      @user = User.find(current_user.id)
+    end
+
     def params_user
       params.require(:user).permit(:email, :password, :password_confirmation,
         account_attributes: [:id, :name, :number, :balance])
-    end
-
-    def set_params
-      @user = User.find(current_user.id)
     end
 
     def password_verify

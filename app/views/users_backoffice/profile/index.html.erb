@@ -30,21 +30,18 @@
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav"></ul>
             <ul class="nav navbar-nav navbar-right">
-              <% if @user %>
-                <li><%= link_to 'Depositar', users_backoffice_depositar_path %></li>
-                <li><%= link_to 'Criar Conta', users_backoffice_editar_path %></li>
-              <% else %>
-                <li><%= link_to 'Sacar', users_backoffice_sacar_path %></li>
-                <li><%= link_to 'Transferência', users_backoffice_transferencia_path %></li>
-                <li><%= link_to 'Saldo', users_backoffice_saldo_path %></li>
-                <li><%= link_to 'Extrato', users_backoffice_extrato_path %></li>
-                <li><%= link_to 'Encerrar Conta', users_backoffice_encerrar_conta_path %></li>
-                <li>
-                  <%= link_to destroy_user_session_path, method: :delete do %>
-                    <i class="fa fa-sign-out fafw"></i> Sair
-                  <% end %>
-                </li>
-              <% end %>
+              <li><%= link_to 'Sacar', users_backoffice_withdraw_path %></li>
+              <li><%= link_to 'Depositar', users_backoffice_deposit_path %></li>
+              <li><%= link_to 'Transferência', users_backoffice_transfer_path %></li>
+              <li><%= link_to 'Saldo', users_backoffice_balance_path %></li>
+              <li><%= link_to 'Extrato', users_backoffice_extract_path %></li>
+              <li><%= link_to 'Editar Conta', users_backoffice_edit_path %></li>
+              <li><%= link_to 'Encerrar Conta', users_backoffice_closing_account_path %></li>
+              <li>
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                  <i class="fa fa-sign-out fafw"></i> Sair
+                <% end %>
+              </li>
             </ul>
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
@@ -52,7 +49,19 @@
       <%= yield %>
 
       <div class="jumbotron">
-        <h3><%= "Teste" %></h3>
+        <% if @user.account.name? %>
+          <h3>Olá, <%= @user.account.name %>!</h3>
+          <p>
+            Esta aplicação é uma simulação de um banco online.
+          </p>
+        <% else %>
+          <h3>
+            Olá, <%= @user.email %>
+            <p>
+              Caso queira editar sua conta, adicionando seu nome, clique em 'editar conta'.
+            </p>
+          </h3>
+        <% end %>
       </div>
       
     </div> <!-- /container -->
