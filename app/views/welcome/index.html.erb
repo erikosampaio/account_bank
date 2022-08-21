@@ -30,20 +30,32 @@
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav"></ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><%= link_to 'Depositar', users_backoffice_profile_deposit_path %></li>
-              <li><%= link_to 'Logar', users_backoffice_profile_index_path %></li>
-              <li><%= link_to 'Criar Login', new_user_registration_path %></li>
+              <% unless user_signed_in? %>
+                <li><%= link_to 'Depositar', users_backoffice_profile_deposit_path %></li>
+              <% end %>
+              <li><%= link_to 'Meu Banco', users_backoffice_profile_index_path %></li>
+              <% unless user_signed_in? %>
+                <li><%= link_to 'Criar Login', new_user_registration_path %></li>
+              <% end %>
+              <% if user_signed_in? %>
+                <li><%= link_to 'Sair', destroy_user_session_path, method: :delete %></li>
+              <% end %>
             </ul>
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </nav>
       <%= yield %>
       <div class="jumbotron">
-        <h2>"Seja bem vindo!"</h2>
-        <p>
-          Esta é uma aplicação que tem como proposta simular um banco online.
-          Para ter mais funcionalidades além de depositar, logue ou crie sua conta!
-        </p>
+        <% if user_signed_in? %>
+          <h3><%= current_user.email %>, sua conta está ativa.</h3>
+          <p>Para navegar até o ambiente de sua conta, clique em "Meu Banco"!</p>
+        <% else %>
+          <h2>"Seja bem vindo!"</h2>
+          <p>
+            Esta é uma aplicação que tem como proposta simular um banco online.
+            Para ter mais funcionalidades além de depositar, logue ou crie sua conta!
+          </p>
+        <% end %>
       </div>
       
     </div> <!-- /container -->
