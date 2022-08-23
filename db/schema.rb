@@ -10,26 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_21_143531) do
-
-  create_table "accounts", force: :cascade do |t|
-    t.string "name"
-    t.float "balance"
-    t.boolean "situation"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_accounts_on_user_id"
-  end
+ActiveRecord::Schema.define(version: 2022_08_22_222646) do
 
   create_table "transfers", force: :cascade do |t|
     t.float "value"
     t.string "payer"
     t.string "receiver"
-    t.integer "account_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_transfers_on_account_id"
+    t.index ["user_id"], name: "index_transfers_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -40,8 +30,14 @@ ActiveRecord::Schema.define(version: 2022_08_21_143531) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username"
+    t.integer "number_account", default: 1000
+    t.float "balance", default: 0.0
+    t.boolean "situation", default: true
+    t.integer "user_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["user_id"], name: "index_users_on_user_id"
   end
 
 end

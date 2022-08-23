@@ -42,6 +42,9 @@ gem 'devise'
 # Melhor Visualização das tasks
 gem 'tty-spinner'
 
+# Debugador
+gem 'pry'
+
 # Visualizar banco de dados no navegador
 gem 'rails_db'
 

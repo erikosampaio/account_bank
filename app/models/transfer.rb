@@ -1,4 +1,3 @@
 class Transfer < ApplicationRecord
-  belongs_to :account
-  has_one :account
+  belongs_to :user
 end

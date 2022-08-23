@@ -23,7 +23,6 @@ class UsersBackoffice::ProfileController < ApplicationController
   end
 
   def edit
-    @user.build_account if @user.account.blank?
   end
 
   def update
@@ -45,8 +44,7 @@ class UsersBackoffice::ProfileController < ApplicationController
     end
 
     def params_user
-      params.require(:user).permit(:email, :password, :password_confirmation,
-        account_attributes: [:id, :name, :number, :balance])
+      params.require(:user).permit(:email, :password, :password_confirmation, :username, :number_account)
     end
 
     def password_verify

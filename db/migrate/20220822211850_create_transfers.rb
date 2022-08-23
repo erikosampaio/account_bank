@@ -4,7 +4,7 @@ class CreateTransfers < ActiveRecord::Migration[5.2]
       t.float :value
       t.string :payer
       t.string :receiver
-      t.references :account, foreign_key: true
+      t.references :user, foreign_key: true
 
       t.timestamps
     end
