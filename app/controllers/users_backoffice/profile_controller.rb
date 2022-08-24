@@ -23,6 +23,9 @@ class UsersBackoffice::ProfileController < ApplicationController
   end
 
   def deposit_logged
+    
+    binding.pry
+    
     @user.balance += params[:user][:value].to_f if params[:user][:value].present?
     if @user.save
       redirect_to users_backoffice_profile_index_path, notice: "Depósito realizado com sucesso!"
@@ -35,6 +38,7 @@ class UsersBackoffice::ProfileController < ApplicationController
   end
 
   def transfer
+    @transfers = @user.transfer
   end
 
   def extract
@@ -53,6 +57,12 @@ class UsersBackoffice::ProfileController < ApplicationController
   end
 
   def closing_account
+    @user.situation = false
+    if @user.save
+      redirect_to users_backoffice_profile_index_path, notice: "Conta encerrada com sucesso!"
+    else
+      render :closing_account
+    end
   end
 
   private

@@ -1,1 +1,46 @@
-Extrato
+<div class="container">
+  <h2>Extrato Bancário</h2>
+
+  <div class="card-body">
+    <%= form_tag "/users_backoffice/profile/extract", method: 'get', id: 'form' do %>
+      <div class="row" >
+        <div class="form-group col-sm-2">
+          <%= label_tag "Período de" %>
+          <%= date_field_tag :min, params[:min] ||= Date.today , class: 'form-control' %>
+        </div>
+        <div class="form-group col-sm-2">
+          <%= label_tag "Até de" %>
+          <%= date_field_tag :max, params[:max] ||= Date.today , class: 'form-control' %>
+        </div>
+        <div class="form-group col-sm-4" style="padding: 20px 250px 0px 0px;">
+          <%= button_tag(value: "commit", type: 'submit', class: "btn btn-success") do %>
+            <i class="fa fa-search"></i> Filtrar
+          <% end %>
+        </div>
+      </div>
+      <br><br>
+    <% end %>
+  </div>
+
+  <table class="table container table-striped table-bordered table-hover" style="max-width: 800px;">
+    <thead>
+      <tr class="thead">
+        <th><h4>Data</h4></th>
+        <th><b><h4> Lançamento</h4> </b></th>
+        <th><b><h4> Pagador</h4> </b></th>
+        <th><b><h4> Valor (R$)</h4> </b></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @user.transfer.each do |t|%>
+      <tr>
+        <td><%= t.created_at.strftime("%d/%m/%y") %></td>
+        <td><%= t.type rescue nil %></td>
+        <td><%= t.payer %></td>
+        <td><%= t.value %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
