@@ -1,1 +1,28 @@
-<h1>depositar</h1>
+<div class="animate form login_form">
+  <%= form_with(url: users_backoffice_profile_path, model: @user, local: true) do |form| %>
+    <div class="col-md-3">
+      <h1 style="font-family: Calibri">Depositando</h1>
+      <div class="form-group">
+        <%= form.label :Numero_da_conta %>
+        <%= select_tag :number_account, options_from_collection_for_select(User.where("situation = true"), "id", "username", params[:number_account]), include_blank: true, required: true, class: "form-control select",
+                      "data-live-search" => "true", "data-selected-text-format" => "count", "data-actions-box" => true %>
+      </div>
+      <div class="form-group">
+        <%= form.label :Valor %>
+        <%= form.number_field :value, placeholder:"Valor", class:"form-control", min:"1" %>
+      </div>
+      <div class="form-group">
+        <%= form.label :senha %>
+        <%= form.password_field :password, placeholder:"Senha", class:"form-control" %>
+      </div>
+      <div class="form-group">
+        <%= form.label :Confirmação_da_senha %>
+        <%= form.password_field :password_confirmation, placeholder:"Confirmação da Senha", class:"form-control" %>
+      </div>
+      <div class="form-group">
+        <%= form.submit "Salvar", class:"btn btn-primary submit" %>
+        <%= link_to "Cancelar", root_path, class:"btn btn-danger" %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   accepts_nested_attributes_for :transfer, reject_if: :all_blank
 
-  # Callbacks
+  # Callbacks 
   before_create :set_number_account, :set_username
   before_save :generate_number_account
   

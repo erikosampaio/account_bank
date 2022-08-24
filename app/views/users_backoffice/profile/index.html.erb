@@ -30,10 +30,10 @@
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav"></ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><%= link_to 'Sacar', users_backoffice_profile_withdraw_path %></li>
-              <li><%= link_to 'Depositar', users_backoffice_profile_deposit_path %></li>
+              <li><%= link_to 'Sacar', '#', "data-toggle":"modal", "data-target":"#withdrawModal" %></li>
+              <li><%= link_to 'Depositar', '#', "data-toggle":"modal", "data-target":"#depositModal" %></li>
               <li><%= link_to 'Transferência', users_backoffice_profile_transfer_path %></li>
-              <li><%= link_to 'Saldo', users_backoffice_profile_balance_path %></li>
+              <li><%= link_to 'Saldo', '#', "data-toggle":"modal", "data-target":"#balanceModal" %></li>
               <li><%= link_to 'Extrato', users_backoffice_profile_extract_path %></li>
               <li><%= link_to 'Editar Conta', users_backoffice_profile_path %></li>
               <li><%= link_to 'Encerrar Conta', users_backoffice_profile_closing_account_path %></li>
@@ -51,8 +51,77 @@
       <div class="jumbotron">
         <h2>Teste</h2>
       </div>
-      
+
     </div> <!-- /container -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="balanceModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <form>
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Seu Saldo:</h4>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <%= label_tag 'R$' %>
+                <%= text_field_tag nil, @user.balance.round(2), class:"form-control", disabled:"true" %>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- /Modal -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="depositModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <%= form_with(url: users_backoffice_profile_deposit_logged_path, model: @user, local: true) do |form| %>
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Depósito</h4>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <%= form.label :valor %>
+                <%= form.number_field :value, placeholder:"Valor", class:"form-control", min:"1" %>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <%= form.submit 'Depositar', class:"btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <!-- /Modal -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="withdrawModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <%= form_with(url: users_backoffice_profile_withdraw_path, model: @user) do |form| %>
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Saque</h4>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <%= form.label :valor %>
+                <%= form.number_field :amount, placeholder:"Valor", class:"form-control", min:"1" %>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <%= form.submit 'Sacar', class:"btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <!-- /Modal -->
 
     <%= javascript_include_tag 'application' %>
   </body>
