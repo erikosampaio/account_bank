@@ -1,0 +1,26 @@
+pt-BR':
+  activerecord:
+    models:
+      user:
+        one: Usuário
+        other: Usuários
+    attributes:
+      user:
+        id: Código
+        email: Email
+        username: Sobrenome
+        number_account: Número da conta
+        balance: Saldo
+        situation: Situação da Conta
+        password: Senha
+        password_confirmation: Confirmação da Senha
+        created_at: Criado em
+        update_at: Atualizado em
+      transfer:
+        id: Código
+        value: Valor
+        payer: Pagador
+        receiver: Recebedor
+        user_id: Usuário
+        created_at: Criado em
+        update_at: Atualizado em

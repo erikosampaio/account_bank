@@ -23,9 +23,6 @@ class UsersBackoffice::ProfileController < ApplicationController
   end
 
   def deposit_logged
-    
-    binding.pry
-    
     @user.balance += params[:user][:value].to_f if params[:user][:value].present?
     if @user.save
       redirect_to users_backoffice_profile_index_path, notice: "Depósito realizado com sucesso!"
