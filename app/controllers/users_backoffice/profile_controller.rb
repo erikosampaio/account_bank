@@ -24,7 +24,13 @@ class UsersBackoffice::ProfileController < ApplicationController
 
   def deposit_logged
     @user.balance += params[:user][:value].to_f if params[:user][:value].present?
-    if @user.save
+    transfer = Transfer.create!(
+      value: params[:user][:value].to_f,
+      payer: @user.username,
+      receiver: @user.username,
+      user: @user
+    )
+    if @user.save && transfer.save
       redirect_to users_backoffice_profile_index_path, notice: "Depósito realizado com sucesso!"
     else
       render :deposit_logged
@@ -35,10 +41,11 @@ class UsersBackoffice::ProfileController < ApplicationController
   end
 
   def transfer
-    @transfers = @user.transfer
   end
 
   def extract
+    @transfers = @user.transfer
+    @transfers.search_by_period(params[:min], params[:max])
   end
 
   def edit
